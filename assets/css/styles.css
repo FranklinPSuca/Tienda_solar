@@ -1,0 +1,312 @@
+:root {
+  --primary-color: #2e7d32;
+  --secondary-color: #ffc107;
+  --dark-color: #1b5e20;
+  --light-color: #f8f9fa;
+  --text-dark: #333;
+  --text-light: #6c757d;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled {
+  background-color: white !important;
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: var(--primary-color) !important;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  margin: 0 0.5rem;
+  position: relative;
+  color: var(--text-dark) !important;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--secondary-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/hero-bg.jpg') no-repeat center center/cover;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  animation: fadeIn 1s ease-out;
+}
+
+.hero h1 {
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Servicios */
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background: var(--secondary-color);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.service-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2rem;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Botones */
+.btn-custom {
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--dark-color);
+  border-color: var(--dark-color);
+  transform: translateY(-2px);
+}
+
+.btn-outline-custom {
+  border-color: white;
+  color: white;
+}
+
+.btn-outline-custom:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+/* Sección de características */
+.feature-box {
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  height: 100%;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Testimonios */
+.testimonial-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin: 1rem;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--primary-color);
+}
+
+/* Contacto */
+.contact-info {
+  background: var(--light-color);
+  padding: 2rem;
+  border-radius: 15px;
+  height: 100%;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-right: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 4rem 0 2rem;
+}
+
+.footer h5 {
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.footer-links a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--secondary-color);
+  padding-left: 5px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: var(--secondary-color);
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animaciones */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  background-color: #128C7E;
+  color: #FFF;
+  transform: scale(1.1);
+}
