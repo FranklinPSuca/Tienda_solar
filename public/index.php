@@ -1,74 +1,10 @@
-<!DOCTYPE html>
-<html lang="es" data-bs-theme="light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Soluciones en energía solar para hogares y negocios. Paneles solares, instalación y mantenimiento.">
-  <title>Energía Solar | Soluciones Sostenibles</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  
-  <!-- Bootstrap 5 CSS -->
+ <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css">
-  
-  <!-- Preload critical resources -->
-  <link rel="preload" href="assets/css/styles.css" as="style">
-  <link rel="preload" href="assets/js/main.js" as="script">
-</head>
-<body>
-  <!-- WhatsApp Float Button -->
-  <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chatea con nosotros por WhatsApp">
-    <i class="bi bi-whatsapp"></i>
-  </a>
 
-  <!-- Back to Top Button -->
-  <a href="#" class="back-to-top" id="backToTop" aria-label="Volver arriba">
-    <i class="bi bi-arrow-up"></i>
-  </a>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="bi bi-sun-fill text-warning me-2"></i>
-        <span class="fw-bold">Energía</span>Solar
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#inicio">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#servicios">Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#nosotros">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contacto">Contacto</a>
-          </li>
-          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-            <a href="#cotizar" class="btn btn-warning btn-sm">Cotizar Ahora</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+  
   <!-- Hero Section -->
   <header id="inicio" class="hero">
     <div class="container">
@@ -397,7 +333,7 @@
 
   <!-- Mapa -->
   <div class="map-container" style="height: 400px;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.888215335049!2d-99.16782692477548!3d19.42702098185817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff2b3f509719%3A0x2d1c0a4eeb5b0b1b!2sPalacio%20de%20Bellas%20Artes!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" 
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d124863.07176058054!2d-77.01790720000001!3d-12.0455168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1763600646336!5m2!1ses!2spe" 
             width="100%" 
             height="100%" 
             style="border:0;" 
@@ -406,142 +342,4 @@
             aria-label="Ubicación en el mapa">
     </iframe>
   </div>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white pt-5 pb-4">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4 mb-4 mb-lg-0">
-          <h5 class="text-uppercase fw-bold mb-4">Energía Solar</h5>
-          <p>Líderes en soluciones de energía renovable. Ofrecemos productos y servicios de la más alta calidad para hogares y negocios.</p>
-          <div class="social-icons mt-4">
-            <a href="#" class="me-2" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="me-2" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="me-2" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="me-2" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="me-2" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-          </div>
-        </div>
-        
-        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-          <h5 class="text-uppercase fw-bold mb-4">Enlaces Rápidos</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="#inicio" class="text-white-50 text-decoration-none">Inicio</a></li>
-            <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Servicios</a></li>
-            <li class="mb-2"><a href="#nosotros" class="text-white-50 text-decoration-none">Sobre Nosotros</a></li>
-            <li><a href="#contacto" class="text-white-50 text-decoration-none">Contacto</a></li>
-          </ul>
-        </div>
-        
-        <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
-          <h5 class="text-uppercase fw-bold mb-4">Nuestros Servicios</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Paneles Solares</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Servicio de Mantenimiento</a></li>
-          </ul>
-        </div>
-        
-        <div class="col-lg-3 col-md-4">
-          <h5 class="text-uppercase fw-bold mb-4">Boletín Informativo</h5>
-          <p class="text-white-50">Suscríbete para recibir noticias y ofertas especiales.</p>
-          <form class="mb-3">
-            <div class="input-group">
-              <input type="email" class="form-control" placeholder="Tu correo" aria-label="Tu correo">
-              <button class="btn btn-warning" type="button">
-                <i class="bi bi-arrow-right"></i>
-              </button>
-            </div>
-          </form>
-          <p class="small text-white-50">Respetamos tu privacidad. Nunca compartiremos tu información.</p>
-        </div>
-      </div>
-      
-      <hr class="my-4 bg-secondary">
-      
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-          <p class="mb-0 small text-white-50">&copy; <?= date('Y') ?> Energía Solar. Todos los derechos reservados.</p>
-        </div>
-        <div class="col-md-6 text-center text-md-end">
-          <a href="#" class="text-white-50 text-decoration-none small me-3">Términos y Condiciones</a>
-          <a href="#" class="text-white-50 text-decoration-none small me-3">Política de Privacidad</a>
-          <a href="#" class="text-white-50 text-decoration-none small">Aviso Legal</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <!-- Bootstrap JS Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- AOS Animation -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
-  <!-- Custom JS -->
-  <script src="assets/js/main.js"></script>
-  
-  <!-- Initialize AOS -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize AOS
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        disable: 'mobile'
-      });
-      
-      // Form submission
-      const forms = document.querySelectorAll('.needs-validation');
-      
-      // Loop over them and prevent submission
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          } else {
-            // Form is valid, you can add AJAX submission here
-            event.preventDefault();
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            form.reset();
-          }
-          
-          form.classList.add('was-validated');
-        }, false);
-      });
-      
-      // Savings calculator
-      const savingsForm = document.getElementById('savingsCalculator');
-      if (savingsForm) {
-        savingsForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const consumo = parseFloat(document.getElementById('consumo').value) || 0;
-          const tarifa = parseFloat(document.getElementById('tarifa').value) || 0;
-          const ahorroMensual = consumo * tarifa * 0.8; // 80% de ahorro estimado
-          
-          document.getElementById('ahorroMensual').textContent = `$${ahorroMensual.toFixed(2)}`;
-          document.getElementById('resultadoAhorro').classList.remove('d-none');
-        });
-      }
-      
-      // Back to top button
-      const backToTopButton = document.querySelector('.back-to-top');
-      
-      window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.add('show');
-        } else {
-          backToTopButton.classList.remove('show');
-        }
-      });
-      
-      backToTopButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-  </script>
-</body>
-</html>
+<?php require __DIR__ . '/../app/views/layout.php'; ?>
