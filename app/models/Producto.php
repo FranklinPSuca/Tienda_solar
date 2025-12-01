@@ -3,22 +3,32 @@ class Producto {
     private $pdo;
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-    public function listar($filtros = []) {
-        $sql = 'SELECT * FROM productos WHERE 1';
-        $params = [];
-        if (!empty($filtros['categoria_id'])) {
-            $sql .= ' AND categoria_id = :cat';
-            $params[':cat'] = (int)$filtros['categoria_id'];
-        }
-        if (!empty($filtros['q'])) {
-            $sql .= ' AND nombre LIKE :q';
-            $params[':q'] = '%'.$filtros['q'].'%';
-        }
-        $sql .= ' ORDER BY nombre';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        return $stmt->fetchAll();
+    public function listarCategorias() {
+    $stmt = $this->pdo->query("SELECT id, nombre FROM categorias ORDER BY id");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function listar($filtros = []) {
+    $sql = 'SELECT * FROM productos WHERE 1';
+    $params = [];
+
+    if (!empty($filtros['categoria_id'])) {
+        $sql .= ' AND categoria_id = :cat';
+        $params[':cat'] = (int)$filtros['categoria_id'];
+    }
+
+    if (!empty($filtros['q'])) {
+        $sql .= ' AND (nombre LIKE :q1 OR codigo LIKE :q2)';
+        $params[':q1'] = '%'.$filtros['q'].'%';
+        $params[':q2'] = '%'.$filtros['q'].'%';
+    }
+
+    $sql .= ' ORDER BY id';
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function obtener($id) {
         $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE id = :id');

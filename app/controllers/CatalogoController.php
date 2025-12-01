@@ -13,13 +13,12 @@ class CatalogoController {
 
     public function index() {
         $filtros = [
-            'categoria_id' => $_GET['categoria'] ?? null,
-            'q' => $_GET['q'] ?? null
-        ];
+    'q' => $_GET['q'] ?? '',
+    'categoria_id' => $_GET['categoria'] ?? ''
+];
+$productos = $this->producto->listar($filtros);
+$categorias = $this->categoria->listar();
 
-        $productos  = $this->producto->listar($filtros);
-        $categorias = $this->categoria->listar();
-
-        include __DIR__ . '/../views/catalogo.php';
+include __DIR__ . '/../views/catalogo.php';
     }
 }
