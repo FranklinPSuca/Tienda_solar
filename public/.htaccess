@@ -7,14 +7,25 @@ RewriteBase /tienda_solar/public/
 # Redirigir raíz a index.php
 RewriteRule ^$ index.php [L]
 
-# Reescribir vistas limpias
-RewriteRule ^home/?$ index.php?view=home [L]
-RewriteRule ^catalogo/?$ index.php?view=catalogo [L]
-RewriteRule ^producto/([0-9]+)/?$ index.php?view=producto&id=$1 [L]
-RewriteRule ^carrito/?$ index.php?view=carrito [L]
-RewriteRule ^checkout/?$ index.php?view=checkout [L]
-RewriteRule ^login/?$ index.php?view=login [L]
-RewriteRule ^logout/?$ index.php?view=logout [L]
+# --- RUTAS CLIENTE ---
+RewriteRule ^home/?$ index.php?page=home [L]
+RewriteRule ^catalogo/?$ index.php?page=catalogo [L]
+RewriteRule ^producto/([0-9]+)/?$ index.php?page=producto&id=$1 [L]
+RewriteRule ^carrito/?$ index.php?page=carrito [L]
+RewriteRule ^checkout/?$ index.php?page=checkout [L]
+RewriteRule ^login/?$ index.php?page=login [L]
+RewriteRule ^logout/?$ index.php?page=logout [L]
+RewriteRule ^registro/?$ index.php?page=registro [L]
+RewriteRule ^registro_crear/?$ index.php?page=registro_crear [L]
 
-# Captura genérica: cualquier palabra → index.php?view=palabra
-RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?view=$1 [L]
+# --- RUTAS ADMIN ---
+RewriteRule ^admin/?$ index.php?page=admin [L]
+RewriteRule ^admin/create/?$ index.php?page=admin&action=create [L]
+RewriteRule ^admin/edit/([0-9]+)/?$ index.php?page=admin&action=edit&id=$1 [L]
+RewriteRule ^admin/show/([0-9]+)/?$ index.php?page=admin&action=show&id=$1 [L]
+RewriteRule ^admin/delete/([0-9]+)/?$ index.php?page=admin&action=delete&id=$1 [L]
+RewriteRule ^admin/update/?$ index.php?page=admin&action=update [L]   # 👈 ESTA FALTABA
+
+
+# Captura genérica: cualquier palabra → index.php?page=palabra
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?page=$1 [L]

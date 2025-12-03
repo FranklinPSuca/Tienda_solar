@@ -224,7 +224,7 @@
               <div>
                 <h4 class="h6 fw-bold mb-1">Teléfono</h4>
                 <p class="text-muted mb-0">
-                  <a href="tel:+525512345678" class="text-decoration-none text-dark">+52 55 1234 5678</a>
+                  <a href="tel:+525512345678" class="text-decoration-none text-dark">+51 921311728</a>
                 </p>
               </div>
             </div>

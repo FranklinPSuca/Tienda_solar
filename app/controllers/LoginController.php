@@ -8,7 +8,6 @@ class LoginController {
     }
 
     public function index() {
-
         $return = $_GET['return'] ?? null;
 
         renderView('login/login', [
@@ -18,7 +17,6 @@ class LoginController {
     }
 
     public function auth() {
-
         $email    = $_POST['email']    ?? '';
         $password = $_POST['password'] ?? '';
         $return   = $_POST['return']   ?? 'home';
@@ -31,7 +29,8 @@ class LoginController {
             return;
         }
 
-        $stmt = $this->pdo->prepare("SELECT id, email, password FROM usuarios WHERE email = ?");
+        // Traemos también el rol
+        $stmt = $this->pdo->prepare("SELECT id, nombre, email, password, rol FROM usuarios WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
@@ -44,11 +43,18 @@ class LoginController {
         }
 
         // Guardar datos de sesión
-            $_SESSION['usuario_id'] = $user['id'];
-            $_SESSION['user']       = $user['email']; // o el nombre si lo tienes en la BD
+        $_SESSION['usuario_id'] = $user['id'];
+        $_SESSION['user']       = $user['email'];
+        $_SESSION['nombre']     = $user['nombre'];
+        $_SESSION['rol']        = $user['rol'];
 
+        // Redirección según rol
+        if ($user['rol'] === 'admin') {
+            header("Location: dashboard.php?page=admin");
+        } else {
             header("Location: index.php?page=$return");
-            exit;
+        }
+        exit;
     }
 
     public function logout() {
@@ -56,5 +62,4 @@ class LoginController {
         header("Location: index.php?page=home");
         exit;
     }
-
 }
