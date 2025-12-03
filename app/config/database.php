@@ -4,6 +4,7 @@ $DB_NAME = 'tienda_solar';
 $DB_USER = 'root';
 $DB_PASS = '';
 $DB_CHAR = 'utf8mb4';
+
 try {
     $pdo = new PDO(
         "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=$DB_CHAR",
@@ -16,6 +17,9 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    die('Error de conexión a la base de datos: ' . $e->getMessage());
+    // Mostrar error y detener ejecución
+    die('❌ Error de conexión a la base de datos: ' . $e->getMessage());
 }
+
+// Siempre devolver el objeto PDO
 return $pdo;

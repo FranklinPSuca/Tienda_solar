@@ -1,81 +1,108 @@
 <?php
+// app/models/Producto.php
 class Producto {
     private $pdo;
-    public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-    public function listarCategorias() {
-    $stmt = $this->pdo->query("SELECT id, nombre FROM categorias ORDER BY id");
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
+
+    /**
+     * Obtener todas las categorías disponibles
+     */
+    public function obtenerCategorias() 
+    {
+        try {
+            $sql = "SELECT id, nombre FROM categorias ORDER BY nombre ASC";
+            $stmt = $this->pdo->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $e) {
+            die("ERROR SQL obtenerCategorias(): " . $e->getMessage());
+        }
+    }
+
+
+    /**
+     * Buscar productos con filtros dinámicos
+     * @param string $buscar Texto de búsqueda
+     * @param string $categoria ID de categoría
+     * @param string $orden Orden de resultados (precio_asc, precio_desc)
+     */
+    public function buscarProductos($buscar = '', $categoria = '', $orden = '') {
+        $sql = "SELECT * FROM productos WHERE 1=1";
+        $params = [];
+
+        // Filtro por nombre
+        if ($buscar !== '') {
+            $sql .= " AND nombre LIKE :buscar";
+            $params[':buscar'] = "%$buscar%";
+        }
+
+        // Filtro por categoría
+        if ($categoria !== '') {
+            $sql .= " AND categoria_id = :categoria";
+            $params[':categoria'] = $categoria;
+        }
+
+        // Ordenamiento
+        if ($orden === 'precio_asc') {
+            $sql .= " ORDER BY precio ASC";
+        } elseif ($orden === 'precio_desc') {
+            $sql .= " ORDER BY precio DESC";
+        } else {
+            $sql .= " ORDER BY nombre ASC"; // orden por defecto
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Obtener un producto por ID
+     */
+    public function obtenerPorId($id) {
+    $stmt = $this->pdo->prepare("SELECT * FROM productos WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function obtenerTodos() {
+    $stmt = $this->pdo->query("SELECT * FROM productos");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function listar($filtros = []) {
-    $sql = 'SELECT * FROM productos WHERE 1';
-    $params = [];
 
-    if (!empty($filtros['categoria_id'])) {
-        $sql .= ' AND categoria_id = :cat';
-        $params[':cat'] = (int)$filtros['categoria_id'];
-    }
-
-    if (!empty($filtros['q'])) {
-        $sql .= ' AND (nombre LIKE :q1 OR codigo LIKE :q2)';
-        $params[':q1'] = '%'.$filtros['q'].'%';
-        $params[':q2'] = '%'.$filtros['q'].'%';
-    }
-
-    $sql .= ' ORDER BY id';
-
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute($params);
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-    public function obtener($id) {
-        $stmt = $this->pdo->prepare('SELECT * FROM productos WHERE id = :id');
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch();
-    }
-
-    public function crear($data) {
-        $stmt = $this->pdo->prepare('INSERT INTO productos (nombre, descripcion, precio, stock, imagen, categoria_id) VALUES (:n,:d,:p,:s,:i,:c)');
-        $stmt->execute([
-            ':n'=>$data['nombre'],':d'=>$data['descripcion']??'',':p'=>$data['precio'],
-            ':s'=>$data['stock']??0,':i'=>$data['imagen']??null,':c'=>$data['categoria_id']??null
-        ]);
-        return $this->pdo->lastInsertId();
-    }
-
-    public function actualizar($id, $data) {
-        $stmt = $this->pdo->prepare('UPDATE productos SET nombre=:n, descripcion=:d, precio=:p, stock=:s, imagen=:i, categoria_id=:c WHERE id=:id');
-        return $stmt->execute([
-            ':n'=>$data['nombre'],':d'=>$data['descripcion']??'',':p'=>$data['precio'],
-            ':s'=>$data['stock']??0,':i'=>$data['imagen']??null,':c'=>$data['categoria_id']??null,':id'=>$id
-        ]);
-    }
-
-    public function eliminar($id) {
-        $stmt = $this->pdo->prepare('DELETE FROM productos WHERE id=:id');
-        return $stmt->execute([':id'=>$id]);
-    }
-
-    public static function obtenerPorId($pdo, $id) {
-        $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function descontarStock($idProducto, $cantidad) {
+    public function actualizarStock($id, $cantidadVendida) {
     $sql = "UPDATE productos 
-        SET stock = stock - :cantidad 
-        WHERE id = :id AND stock >= :stockMinimo";
+            SET stock = stock - :cantidad 
+            WHERE id = :id AND stock >= :cantidad";
 
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([
-        ':cantidad' => $cantidad,
-        ':id'       => $idProducto,
-        ':stockMinimo' => $cantidad
-    ]);
+    $stmt->bindValue(':cantidad', $cantidadVendida, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 
-    return $stmt->rowCount() > 0; // devuelve true solo si se actualizó
+    return $stmt->rowCount() > 0; // True si actualizó stock
+    }
+
+    public function tieneStock($id, $cantidad) {
+    $sql = "SELECT stock FROM productos WHERE id = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return ($row && $row['stock'] >= $cantidad);
+    }
+    
+    public function descontarStock($id, $cantidad){
+        $sql = "UPDATE productos 
+                SET stock = stock - :cantidad 
+                WHERE id = :id AND stock >= :cantidadMin";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':cantidad', $cantidad, PDO::PARAM_INT);
+        $stmt->bindValue(':cantidadMin', $cantidad, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 }

@@ -1,0 +1,20 @@
+# Activar motor de reescritura
+RewriteEngine On
+
+# Base de la tienda pública
+RewriteBase /tienda_solar/public/
+
+# Redirigir raíz a index.php
+RewriteRule ^$ index.php [L]
+
+# Reescribir vistas limpias
+RewriteRule ^home/?$ index.php?view=home [L]
+RewriteRule ^catalogo/?$ index.php?view=catalogo [L]
+RewriteRule ^producto/([0-9]+)/?$ index.php?view=producto&id=$1 [L]
+RewriteRule ^carrito/?$ index.php?view=carrito [L]
+RewriteRule ^checkout/?$ index.php?view=checkout [L]
+RewriteRule ^login/?$ index.php?view=login [L]
+RewriteRule ^logout/?$ index.php?view=logout [L]
+
+# Captura genérica: cualquier palabra → index.php?view=palabra
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?view=$1 [L]

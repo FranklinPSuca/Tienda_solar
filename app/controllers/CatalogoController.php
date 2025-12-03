@@ -1,24 +1,37 @@
 <?php
+// app/controllers/CatalogoController.php
 require_once __DIR__ . '/../models/Producto.php';
-require_once __DIR__ . '/../models/Categoria.php';
 
 class CatalogoController {
-    private $producto;
-    private $categoria;
+    private $productoModel;
 
-    public function __construct(PDO $pdo) {
-        $this->producto  = new Producto($pdo);
-        $this->categoria = new Categoria($pdo);
+    public function __construct($pdo) {
+        $this->productoModel = new Producto($pdo);
     }
 
     public function index() {
-        $filtros = [
-    'q' => $_GET['q'] ?? '',
-    'categoria_id' => $_GET['categoria'] ?? ''
-];
-$productos = $this->producto->listar($filtros);
-$categorias = $this->categoria->listar();
+        // Capturar filtros desde GET
+        $buscar    = $_GET['buscar']   ?? '';
+        $categoria = $_GET['categoria'] ?? '';
+        $orden     = $_GET['orden']     ?? '';
 
-include __DIR__ . '/../views/catalogo.php';
+        // Obtener categorías para el select
+        $categorias = $this->productoModel->obtenerCategorias();
+
+        // Buscar productos con filtros
+        $productos = $this->productoModel->buscarProductos($buscar, $categoria, $orden);
+
+        // Título de la página
+        $title = 'Catálogo';
+
+        // Renderizar vista con datos
+        renderView('catalogo', [
+            'title'      => $title,
+            'categorias' => $categorias,
+            'productos'  => $productos,
+            'buscar'     => $buscar,
+            'categoria'  => $categoria,
+            'orden'      => $orden
+        ]);
     }
 }

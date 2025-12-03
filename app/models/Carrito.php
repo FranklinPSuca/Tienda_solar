@@ -4,14 +4,12 @@ class Carrito {
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
     public function agregar($producto_id, $cantidad=1) {
-        session_start();
         if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
         if (!isset($_SESSION['cart'][$producto_id])) $_SESSION['cart'][$producto_id] = 0;
         $_SESSION['cart'][$producto_id] += $cantidad;
     }
 
     public function listar() {
-        session_start();
         if (empty($_SESSION['cart'])) return [];
         $ids = array_keys($_SESSION['cart']);
         $in = str_repeat('?,', count($ids)-1) . '?';
@@ -23,7 +21,6 @@ class Carrito {
     }
 
     public function vaciar() {
-    session_start();
     unset($_SESSION['cart']);
     }   
 }
