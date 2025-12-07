@@ -8,22 +8,24 @@ class AdminController {
     }
 
     // Listar todos los registros
-    public function index() {
+public function index() {
     $categoria = ($_GET['categoria'] ?? '') !== '' ? (int)$_GET['categoria'] : null;
     $codigo    = ($_GET['codigo'] ?? '') !== '' ? (int)$_GET['codigo'] : null;
+    $buscar    = $_GET['buscar'] ?? null;
+    $orden     = $_GET['orden'] ?? null;
 
-    $items      = $this->model->filter($categoria, $codigo);
+    $items      = $this->model->filter($categoria, $codigo, $buscar, $orden);
     $categorias = $this->model->categorias();
 
     renderView('admin/index', [
         'items'      => $items,
         'categorias' => $categorias,
         'categoria'  => $categoria,
-        'codigo'     => $codigo
+        'codigo'     => $codigo,
+        'buscar'     => $buscar,
+        'orden'      => $orden
     ]);
-
-
-    }
+}
 
     // Mostrar formulario de creación
     public function create() {

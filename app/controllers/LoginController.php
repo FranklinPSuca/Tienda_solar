@@ -50,7 +50,7 @@ class LoginController {
 
         // Redirección según rol
         if ($user['rol'] === 'admin') {
-            header("Location: dashboard.php?page=admin");
+            header("Location: index.php?page=admin");
         } else {
             header("Location: index.php?page=$return");
         }

@@ -1,5 +1,5 @@
 <h1>Nuevo producto</h1>
-<form method="POST" action="index.php?page=admin&action=store">
+<form method="POST" action="/tienda_solar/public/index.php?page=admin&action=store">
   <div class="mb-3">
     <label>Nombre</label>
     <input type="text" name="nombre" class="form-control" required>

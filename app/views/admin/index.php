@@ -41,7 +41,8 @@
             <td>
             <a href="/tienda_solar/public/admin/show/<?= $p['id'] ?>" class="btn btn-info">Ver</a>
             <a href="/tienda_solar/public/admin/edit/<?= $p['id'] ?>" class="btn btn-warning">Editar</a>
-            <a href="/tienda_solar/public/admin/delete/<?= $p['id'] ?>" class="btn btn-danger">Eliminar</a>
+            <a href="/tienda_solar/public/index.php?page=admin&action=delete&id=<?= $p['id'] ?>" class="btn btn-danger">Eliminar</a>
+
             </td>
         </tr>
     <?php endforeach; ?>
